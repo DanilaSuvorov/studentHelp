@@ -8,7 +8,7 @@ bot = telebot.TeleBot('5634375605:AAETwJSyOylRX80MZKK8Tq_SxC48epUPlBs')
 def start(message):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
     btn1 = types.KeyboardButton("Информация о ВУЗе")
-    btn2 = types.KeyboardButton("Задать вопрос напрямую")
+    btn2 = types.KeyboardButton("Задать вопрос")
     markup.add(btn1, btn2)
     bot.send_message(message.chat.id,
                      text="Привет, {0.first_name}! Я бот-помощник для студента УМЦ".format(message.from_user),
@@ -22,10 +22,9 @@ def func(message):
         btn1 = types.KeyboardButton("Бакалавриат")
         btn2 = types.KeyboardButton("Магистратура")
         btn3 = types.KeyboardButton("Аспирантура")
-        btn4 = types.KeyboardButton("Приемная комиссия")
         back = types.KeyboardButton("Вернуться в главное меню")
 
-        markup.add(btn1, btn2, btn3, btn4, back)
+        markup.add(btn1, btn2, btn3, back)
         bot.send_message(message.chat.id, text="Выберите категорию".format(message.from_user), reply_markup=markup)
     elif message.text == "Бакалавриат":
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -95,29 +94,16 @@ def func(message):
 
         markup.add(asp1, asp2, asp3)
         bot.send_message(message.chat.id, "Выберите направление", reply_markup=markup)
-    elif message.text == "Приемная комиссия":
-        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        btn1 = types.KeyboardButton("Адрес приемной комиссии")
-        btn2 = types.KeyboardButton("Контакты приемной комиссии")
-        btn3 = types.KeyboardButton("Время работы приемной комиссии")
-        back = types.KeyboardButton("Вернуться в главное меню")
+    elif message.text == "Задать вопрос":
+        markup = types.InlineKeyboardMarkup()
+        que1 = types.InlineKeyboardButton(text='Контакты', url='http://imc-i.ru/abiturientam/kontakty/')
 
-        markup.add(btn1, btn2, btn3, back)
-        bot.send_message(message.chat.id, text="Задайте вопрос".format(message.from_user), reply_markup=markup)
-    elif message.text == "Адрес приемной комиссии":
-        bot.send_message(message.chat.id, text="г.Москва, Ленинский проспект, д.1/2, корп.1")
-    elif message.text == "Контакты приемной комиссии":
-        bot.send_message(message.chat.id, text="8 (800) 234-77-20 (звонок бесплатный), +7 (495) 632-17-70, +7 (916) "
-                                               "393-00-55, +7 (916) 393-44-55, +7 (919) 998-89-72, +7 (919) 998-34-99")
-    elif message.text == "Время работы приемной комиссии":
-        bot.send_message(message.chat.id, text="Понедельник — пятница с 09:30 до 18:00 по МСК, суббота с 10:00 до "
-                                               "18:00 по МСК.")
-    elif message.text == "Задать вопрос напрямую":
-
+        markup.add(que1)
+        bot.send_message(message.chat.id, "Вы можете задать вопрос напрямую в ВУЗ", reply_markup=markup)
     elif message.text == "Вернуться в главное меню":
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
         button1 = types.KeyboardButton("Информация о ВУЗе")
-        button2 = types.KeyboardButton("Задать вопрос напрямую")
+        button2 = types.KeyboardButton("Задать вопрос")
         markup.add(button1, button2)
         bot.send_message(message.chat.id, text="Вы вернулись в главное меню", reply_markup=markup)
     else:
