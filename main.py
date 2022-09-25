@@ -30,12 +30,21 @@ def func(message):
     elif message.text == "Бакалавриат":
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
         btn1 = types.KeyboardButton("Направления подготовки бакалавриата")
-        btn2 = types.KeyboardButton("бак2")
-        btn3 = types.KeyboardButton("бак3")
+        btn2 = types.KeyboardButton("Стоимость обучения на бакалавриате")
         back = types.KeyboardButton("Вернуться в главное меню")
 
-        markup.add(btn1, btn2, btn3, back)
+        markup.add(btn1, btn2, back)
         bot.send_message(message.chat.id, text="Задайте вопрос".format(message.from_user), reply_markup=markup)
+    elif message.text == "Стоимость обучения на бакалавриате":
+        img1 = open("photos/Очная_бакалавриат.JPG", "rb")
+        bot.send_message(message.chat.id, text="Очная форма обучения")
+        bot.send_photo(message.chat.id, img1)
+        img2 = open("photos/Очно-заочная_бакалавриат.jpg", "rb")
+        bot.send_message(message.chat.id, text="Очно-заочная форма обучения")
+        bot.send_photo(message.chat.id, img2)
+        img3 = open("photos/Заочная_бакалавриат.jpg", "rb")
+        bot.send_message(message.chat.id, text="Заочная форма обучения")
+        bot.send_photo(message.chat.id, img3)
     elif message.text == "Направления подготовки бакалавриата":
         markup = types.InlineKeyboardMarkup()
         bak1 = types.InlineKeyboardButton(text='Политология', url='http://imc-i.ru/polit/')
@@ -57,11 +66,10 @@ def func(message):
     elif message.text == "Магистратура":
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
         btn1 = types.KeyboardButton("Направления подготовки магистратуры")
-        btn2 = types.KeyboardButton("маг2")
-        btn3 = types.KeyboardButton("маг3")
+        btn2 = types.KeyboardButton("Стоимость обучения на магистратуре")
         back = types.KeyboardButton("Вернуться в главное меню")
 
-        markup.add(btn1, btn2, btn3, back)
+        markup.add(btn1, btn2, back)
         bot.send_message(message.chat.id, text="Задайте вопрос".format(message.from_user), reply_markup=markup)
     elif message.text == "Направления подготовки магистратуры":
         markup = types.InlineKeyboardMarkup()
@@ -88,15 +96,31 @@ def func(message):
 
         markup.add(mag1, mag2, mag3, mag4, mag5, mag6, mag7, mag8, mag9, mag10)
         bot.send_message(message.chat.id, "Выберите направление", reply_markup=markup)
+    elif message.text == "Стоимость обучения на магистратуре":
+        img1 = open("photos/Очная_магистратура.jpg", "rb")
+        bot.send_message(message.chat.id, text="Очная форма обучения")
+        bot.send_photo(message.chat.id, img1)
+        img2 = open("photos/Очно-заочная_магистратура.jpg", "rb")
+        bot.send_message(message.chat.id, text="Очно-заочная форма обучения")
+        bot.send_photo(message.chat.id, img2)
+        img3 = open("photos/Заочная_магистратура.jpg", "rb")
+        bot.send_message(message.chat.id, text="Заочная форма обучения")
+        bot.send_photo(message.chat.id, img3)
     elif message.text == "Аспирантура":
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
         btn1 = types.KeyboardButton("Направления подготовки аспирантуры")
-        btn2 = types.KeyboardButton("асп2")
-        btn3 = types.KeyboardButton("асп3")
+        btn2 = types.KeyboardButton("Стоимость обучения на аспирантуре")
         back = types.KeyboardButton("Вернуться в главное меню")
 
-        markup.add(btn1, btn2, btn3, back)
+        markup.add(btn1, btn2, back)
         bot.send_message(message.chat.id, text="Задайте вопрос".format(message.from_user), reply_markup=markup)
+    elif message.text == "Стоимость обучения на аспирантуре":
+        img1 = open("photos/Очная_аспирантура.jpg", "rb")
+        bot.send_message(message.chat.id, text="Очная форма обучения")
+        bot.send_photo(message.chat.id, img1)
+        img2 = open("photos/Заочная_аспирантура.jpg", "rb")
+        bot.send_message(message.chat.id, text="Заочная форма обучения")
+        bot.send_photo(message.chat.id, img2)
     elif message.text == "Направления подготовки аспирантуры":
         markup = types.InlineKeyboardMarkup()
         asp1 = types.InlineKeyboardButton(text='Психология труда, инженерная психология, когнитивная эргономика',
