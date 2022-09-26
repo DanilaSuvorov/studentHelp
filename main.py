@@ -10,7 +10,9 @@ def start(message):
     btn1 = types.KeyboardButton("Информация о ВУЗе")
     btn2 = types.KeyboardButton("Задать вопрос")
     btn3 = types.KeyboardButton("Электронные ресурсы")
-    markup.add(btn1, btn2, btn3)
+    btn4 = types.KeyboardButton("Общежития")
+    btn5 = types.KeyboardButton("Информация об оплате")
+    markup.add(btn1, btn2, btn3, btn4, btn5)
     bot.send_message(message.chat.id,
                      text="Привет, {0.first_name}! Я бот-помощник для студента УМЦ".format(message.from_user),
                      reply_markup=markup)
@@ -348,12 +350,67 @@ def func(message):
 
         markup.add(btn1, btn2)
         bot.send_message(message.chat.id, "Выберите нужное", reply_markup=markup)
+    elif message.text == "Общежития":
+        markup = types.InlineKeyboardMarkup()
+        btn1 = types.InlineKeyboardButton(text='Вся информация об общежитиях',
+                                          url='http://imc-i.ru/userfiles/ufiles/obschezhitie_prez.pdf')
+
+        markup.add(btn1)
+    elif message.text == "Информация об онлайн-оплате":
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        btn1 = types.KeyboardButton("Как оплатить банковской картой")
+        btn2 = types.KeyboardButton("Описание процесса передачи данных")
+        btn3 = types.KeyboardButton("Возврат денежных средств")
+        back = types.KeyboardButton("Вернуться в главное меню")
+
+        markup.add(btn1, btn2, btn3, back)
+        bot.send_message(message.chat.id, text="Выберите нужное".format(message.from_user), reply_markup=markup)
+    elif message.text == "Как оплатить банковской картой":
+        bot.send_message(message.chat.id,
+                         text="1) Перейдите по ссылке: «http://imc-i.ru/oplata/»".format(message.from_user))
+        bot.send_message(message.chat.id,
+                         text="2) Заполните требуемые поля. Поля, отмеченные «*», обязательны для заполнения. "
+                              "Обратите внимание! Если сумма оплаты содержит «копейки», то после цифры «рублей», "
+                              "необходимо ставить (.), а не (,). Например, 12000.68".format(
+                             message.from_user))
+        bot.send_message(message.chat.id, text="3) Нажмите кнопку «Оплатить».".format(message.from_user))
+        bot.send_message(message.chat.id,
+                         text="4) Далее вы будете перенаправлены на платежный шлюз, где сможете указать реквизиты "
+                              "Вашей банковской карты. Соединение с платежным шлюзом и передача параметров Вашей "
+                              "пластиковой карты осуществляется в защищенном режиме с использованием 128-битного "
+                              "протокола шифрования SSL. Если Банк-Эмитент вашей пластиковой карты поддерживает "
+                              "технологию безопасного проведения интернет-платежей Verified By VISA или MasterCard "
+                              "SecureCode, будьте готовы указать специальный пароль, необходимый для успешной оплаты. "
+                              "Способы и возможность получения пароля для совершения интернет-платежа Вы можете "
+                              "уточнить в банке, выпустившем Вашу карту.".format(message.from_user))
+    elif message.text == "Описание процесса передачи данных":
+        bot.send_message(message.chat.id,
+                         text="Для оплаты Вы будете перенаправлены на платежный шлюз ОАО «Сбербанк России» для ввода "
+                              "реквизитов Вашей карты. Пожалуйста, приготовьте Вашу пластиковую карту заранее. "
+                              "Соединение с платежным шлюзом и передача информации осуществляется в защищенном режиме "
+                              "с использованием протокола шифрования SSL. В случае если Ваш банк поддерживает "
+                              "технологию безопасного проведения интернет-платежей Verified By Visa или MasterCard "
+                              "Secure Code для проведения платежа также может потребоваться ввод специального пароля. "
+                              "Способы и возможность получения паролей для совершения интернет-платежей Вы можете "
+                              "уточнить в банке, выпустившем карту. Настоящий сайт поддерживает 128-битное "
+                              "шифрование. Конфиденциальность сообщаемой персональной информации обеспечивается ОАО "
+                              "«Сбербанк России». Введенная информация не будет предоставлена третьим лицам за "
+                              "исключением случаев, предусмотренных законодательством РФ. Проведение платежей по "
+                              "банковским картам осуществляется в строгом соответствии с требованиями платежных "
+                              "систем Visa Int. и MasterCard Europe Sprl.".format(message.from_user))
+    elif message.text == "Возврат денежных средств":
+        bot.send_message(message.chat.id,
+                         text="Возврат денежных средств при оплате банковской картой осуществляется на ту банковскую "
+                              "карту, с которой был сделан платеж. Срок возврата от 1 до 30 рабочих дней.".format(message.from_user))
     elif message.text == "Вернуться в главное меню":
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+
         button1 = types.KeyboardButton("Информация о ВУЗе")
         button2 = types.KeyboardButton("Задать вопрос")
         button3 = types.KeyboardButton("Электронные ресурсы")
-        markup.add(button1, button2, button3)
+        button4 = types.KeyboardButton("Общежития")
+        button5 = types.KeyboardButton("Информация об оплате")
+        markup.add(button1, button2, button3, button4, button5)
         bot.send_message(message.chat.id, text="Вы вернулись в главное меню", reply_markup=markup)
     else:
         bot.send_message(message.chat.id, text="На такую команду я не запрограммирован..")
