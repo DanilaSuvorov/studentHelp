@@ -11,7 +11,7 @@ def start(message):
     btn2 = types.KeyboardButton("Задать вопрос")
     btn3 = types.KeyboardButton("Электронные ресурсы")
     btn4 = types.KeyboardButton("Общежития")
-    btn5 = types.KeyboardButton("Информация об оплате")
+    btn5 = types.KeyboardButton("Информация об онлайн-оплате")
     markup.add(btn1, btn2, btn3, btn4, btn5)
     bot.send_message(message.chat.id,
                      text="Привет, {0.first_name}! Я бот-помощник для студента УМЦ".format(message.from_user),
@@ -352,10 +352,11 @@ def func(message):
         bot.send_message(message.chat.id, "Выберите нужное", reply_markup=markup)
     elif message.text == "Общежития":
         markup = types.InlineKeyboardMarkup()
-        btn1 = types.InlineKeyboardButton(text='Вся информация об общежитиях',
-                                          url='http://imc-i.ru/userfiles/ufiles/obschezhitie_prez.pdf')
+        btn1 = types.InlineKeyboardButton(text='Вся информация об общежитиях', url='http://imc-i.ru/userfiles/ufiles'
+                                                                                   '/obschezhitie_prez.pdf')
 
         markup.add(btn1)
+        bot.send_message(message.chat.id, "Памятка по общежитиям", reply_markup=markup)
     elif message.text == "Информация об онлайн-оплате":
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
         btn1 = types.KeyboardButton("Как оплатить банковской картой")
@@ -409,7 +410,7 @@ def func(message):
         button2 = types.KeyboardButton("Задать вопрос")
         button3 = types.KeyboardButton("Электронные ресурсы")
         button4 = types.KeyboardButton("Общежития")
-        button5 = types.KeyboardButton("Информация об оплате")
+        button5 = types.KeyboardButton("Информация об онлайн-оплате")
         markup.add(button1, button2, button3, button4, button5)
         bot.send_message(message.chat.id, text="Вы вернулись в главное меню", reply_markup=markup)
     else:
