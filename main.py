@@ -1,3 +1,5 @@
+import time
+
 import telebot
 from telebot import types
 
@@ -417,4 +419,10 @@ def func(message):
         bot.send_message(message.chat.id, text="На такую команду я не запрограммирован..")
 
 
-bot.polling(none_stop=True)
+if __name__ == '__main__':
+    while True:
+        try:
+            bot.polling(none_stop=True)
+        except Exception as e:
+            time.sleep(2)
+            print(e)
